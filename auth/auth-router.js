@@ -15,7 +15,7 @@ router.post('/register',  (req, res) => {
       const newUser = saved[0]
     delete newUser.password;
     const token = generateToken(newUser);
-     res.status(201).json({user: newUser, token: token})
+     res.status(201).json({message: `created user: ${user.username}` , token: token})
      
     })
     .catch(err => {
