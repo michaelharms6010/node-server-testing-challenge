@@ -4,8 +4,8 @@ https://quotes-db-mike.herokuapp.com
 
 ```
 RESTRICTED Endpoints (requires token):
-      GET: /quotes/
-      POST: /quotes/
+      GET: /quotes
+      POST: /quotes
       PUT: /quotes/:id
       DELETE: /quotes/:id
 AUTH Endpoints Both these endpoints will return a token:
