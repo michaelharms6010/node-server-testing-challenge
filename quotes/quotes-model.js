@@ -9,11 +9,7 @@ module.exports = {
 }
 
 async function insert(quote) {
-    return db('quotes').insert(quote)
-        .then(ids => {
-            return db('quotes').where({id: ids[0]})
-                .first()
-        })
+    return db('quotes').insert(quote).returning("*")
 }
 function findById(id) {
     return db('quotes')
