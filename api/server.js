@@ -15,7 +15,7 @@ server.use(helmet());
 server.use(morgan("dev"));
 server.use(express.json());
 
-server.use('/quotes', QuotesRouter)
+server.use('/quotes', restricted, QuotesRouter)
 server.use("/auth", AuthRouter)
 
 server.get("/", (req, res) => {
