@@ -3,6 +3,18 @@ const express = require("express");
 
 const router = express.Router();
 
+var Pusher = require('pusher');
+
+var pusher = new Pusher({
+  appId: '960219',
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRET,
+  cluster: 'us2',
+  encrypted: true
+});
+
+
+
 router.get('/', (req, res) => {
     Quotes.getAll()
     .then(quotes => {
@@ -32,6 +44,9 @@ router.put('/:id', (req, res) => {
       if (scheme) {
         Quotes.update(changes, id)
         .then(updatedQuote => {
+        pusher.trigger('quotes', 'new-quote-data', {
+            "message": "hello world"
+        });
           res.json(updatedQuote);
         });
       } else {
@@ -50,6 +65,9 @@ router.put('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Quotes.insert(req.body)
     .then(quote => {
+        pusher.trigger('quotes', 'new-quote-data', {
+            "message": "hello world"
+          });
         res.status(200).json(quote)
     })
     .catch(err => {
