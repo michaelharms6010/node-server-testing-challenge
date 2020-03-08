@@ -78,6 +78,9 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     Quotes.remove(req.params.id)
     .then(quote => {
+        pusher.trigger('quotes', 'new-quote-data', {
+            "message": "hello world"
+        });
         res.status(200).json(quote)
     })
     .catch(err => {
