@@ -44,10 +44,10 @@ router.put('/:id', (req, res) => {
       if (scheme) {
         Quotes.update(changes, id)
         .then(updatedQuote => {
-        pusher.trigger('quotes', 'new-quote-data', {
-            "message": "hello world"
-        });
-          res.json(updatedQuote);
+            pusher.trigger('quotes', 'new-quote-data', {
+                "message": "hello world"
+            });
+            res.json(updatedQuote);
         });
       } else {
         res.status(404).json({ message: 'Could not find quote with given id' });
