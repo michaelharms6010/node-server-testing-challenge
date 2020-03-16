@@ -1,5 +1,7 @@
 # Access Info:
 
+A practice DB of quotes for use with students learning react and axios/fetch
+
 https://quotes-db-mike.herokuapp.com   
 
 ```
